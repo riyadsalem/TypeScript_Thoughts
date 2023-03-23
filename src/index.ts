@@ -1,60 +1,38 @@
-const arrayFilter : number[]= [2,3].filter((item: number ) =>  item > 1 );
+class Person {
 
-/*
-type Filter = {
-   (array: number[], predicate: (item: number) => boolean): number[];
-   (array: string[], predicate: (item: string) => boolean): string[];
-   (array: object[], predicate: (item: object) => boolean): object[];
- };
- */
-
- type Filter = {
-  <T>(array: T[], predicate: (item: T) => boolean): T[];
- }
-
- // type Filter = <T>(array: T[], predicate: (item: T) => boolean) => T[];
- // type Filter<T> = { (array: T[], predicate: (item: T) => boolean): T[];} 
-
-const filter : Filter = (array: any[], predicate: Function) => {
-   let result: any[] = [];
-   for (let i = 0; i < array.length; i++) {
-     let item = array[i];
-     if (predicate(item)) {
-       result.push(item);
-     }
-   }
-   return result;
- };
-
- let numbers = [1, 3, 4, 6, 9, 7, 10, 12];
- function predicate(item: number) {
-   return item < 7;
- }
- 
- let strings = ["cat", "bat", "rat", "mat"];
- function filterCats(item: string) {
-   return item === "cat";
- }
-
-
-const arrayMap : string[] = [1,2].map((itme : number) => itme.toString());
-
-const map = <T,U>(array: T[], func: (num: T) => U) => {
-   if(array.length === 0){
-      return array;
+   // private _age : number | undefined; 
+   constructor(private _name: string, private _age: number){
+      this.testUserAge(_age);
    }
 
-   let result: any[] = [];
-
-   for(let i = 0; i < array.length; i++){
-      result.push(func(array[i]))
+   private testUserAge = (age : number) => {
+      if(age > 200 || age < 0){
+         throw new Error('The age must be within reange of 0-200')
+      }
    }
 
-   return result;
+   public set name(name: string){
+      this._name = name;
+   }
+
+   public get name(){
+      return this._name
+   }
+
+   public set age(age : number){
+      this.testUserAge(age);
+      this._age = age;
+   }
+
+   public get age(): number{
+      // if(this._age === undefined){ throw new Error('The age property has not been set as yet') }
+      return this._age;
+   }
+   
 }
 
+const perosn : Person = new Person('Riyad', 10);
 
-const numbersForMapp = [1,2];
+// perosn.age = 210
 
-const converted = map(numbersForMapp, (num: any) => num.toString());
-
+console.log(perosn.age, perosn.name)
