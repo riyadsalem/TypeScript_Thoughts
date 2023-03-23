@@ -1,12 +1,13 @@
+/*
 const arrayFilter : number[]= [2,3].filter((item: number ) =>  item > 1 );
 
-/*
-type Filter = {
+
+type FilterNoGenerics = {
    (array: number[], predicate: (item: number) => boolean): number[];
    (array: string[], predicate: (item: string) => boolean): string[];
    (array: object[], predicate: (item: object) => boolean): object[];
  };
- */
+ 
 
  type Filter = {
   <T>(array: T[], predicate: (item: T) => boolean): T[];
@@ -58,3 +59,4 @@ const numbersForMapp = [1,2];
 
 const converted = map(numbersForMapp, (num: any) => num.toString());
 
+*/
