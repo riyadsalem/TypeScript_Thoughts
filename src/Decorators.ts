@@ -226,3 +226,47 @@ function PropertyDecorator(
     }
   }
   */
+
+  /*
+  interface MapLocation{
+    lat: number;
+    long: number;
+}
+
+// V1
+// function AddLocation(lat: number, long: number){
+    // return (classConstructor: FunctionConstructor) => {
+        // return class extends classConstructor{
+            // public mapLocation : MapLocation;
+            // constructor(){
+                // super();
+                // this.mapLocation = {lat,long}
+            // }
+        // }
+    
+    // }
+// }
+
+
+function AddLocation(lat: number, long: number){
+    return <T extends {new (...args: any[]): {}}>(classConstructor: T) => {
+        return class extends classConstructor{
+            public mapLocation : MapLocation;
+            constructor(...args: any[]){
+                super(...args);
+                this.mapLocation = {lat,long}
+            }
+        }
+    
+    }
+}
+
+
+@AddLocation(1.234, 1.876)
+class Person{
+    constructor(public name: string, public age: number){}
+}
+
+const perosn: Person = new Person('Riyad',25);
+console.log(perosn)
+*/
